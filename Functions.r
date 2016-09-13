@@ -66,7 +66,10 @@ ESSf <- Vectorize(function(w){
 ESSAf <- function(w)Af(ESSf(w))
 
 # ESS m(w)
-ESSmf <- function(w)mf(w, ESSf(w))
+ESSmf <- Vectorize(function(w)mf(w, ESSf(w)))
 
 # ESS B(w)
 ESSBf <- function(w)ESSAf(w)-ESSmf(w)
+
+# ESS Ev(w)
+ESSEvf <- function(w)h*VPD*ESSf(w)

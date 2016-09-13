@@ -11,7 +11,7 @@ plot(0, 0,
 
 axis(1, xlim=c(0, 1), pos=0, lwd=2)
 mtext(expression(italic(w)),side=1,line=1.7, cex=1.3)
-axis(2, ylim=c(0, 1.2), pos=0, lwd=2)
+axis(2, ylim=c(0, 0.3), pos=0, lwd=2)
 mtext(expression(italic(g[s])~(mol~m^-2~s^-1)),side=2,line=1.8, cex=1.3)
 
 # Parameterization
