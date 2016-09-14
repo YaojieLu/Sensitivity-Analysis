@@ -24,7 +24,7 @@ h2 <- l*LAI/nZ*p/1000
 
 
 #environmental conditions
-h3 <- seq(1, 20, by=1)
+h3 <- seq(5, 100, by=5)
 ca <- c(400)  # Atmospheric CO2 concentration (ppm)
 k <- c(0.05) # Rainfall frequency (per day)
 MAP <- c(1500) # MAP=MDP*365; MAP: mean annual precipitation; MDP: mean daily precipitation
@@ -60,4 +60,4 @@ for(i in 1:nrow(env)){
 res <- cbind(env, dvs)
 colnames(res) <- c("h3", "ca", "k", "MAP", "wL", "fwL", "averA", "averm", "averB")
 
-write.csv(res, "test.csv 0.05; 1500", row.names = FALSE)
+write.csv(res, "test/test.csv 0.05; 1500.csv", row.names = FALSE)

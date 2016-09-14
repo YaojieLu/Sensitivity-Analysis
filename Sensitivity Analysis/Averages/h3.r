@@ -70,4 +70,4 @@ res <- cbind(env, dvs)
 colnames(res) <- c("h3", "ca", "k", "MAP", "wL", "fwL", "averA", "E/MAP", "averm", "averB", "averw", "averci/ca") 
 #colnames(res) <- c("h3", "ca", "k", "MAP", "wL", "fwL", "averA", "averm", "averB")
 
-write.csv(res, "Derived Variables full.csv", row.names = FALSE)
+write.csv(res, "Derived Variables.csv", row.names = FALSE)

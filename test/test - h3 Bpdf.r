@@ -29,10 +29,11 @@ gamma <- 1/((MAP/365/k)/1000)*nZ
 Cols <- c("black", "blue", "red")
 SA <- c(3, 10, 100)
 fL <- numeric(length=3)
+averB <- numeric(length=3)
 
 windows(8, 6)
-par(mgp=c(2.2, 1, 0), xaxs="i", yaxs="i", lwd=2, mar=c(4, 1, 1, 1), mfrow=c(1,1))
-plot(0, 0, type="n", xlim=c(0, 1), ylim=c(0, 16), xlab=expression(italic(w)), ylab=NA)
+par(mgp=c(2.2, 1, 0), xaxs="i", yaxs="i", lwd=2, mar=c(4, 4, 1, 1), mfrow=c(1,1))
+plot(0, 0, type="n", xlim=c(0, 1), ylim=c(0, 100), xlab=expression(italic(w)), ylab='B*PDF')
 legend("bottomleft", title=expression(italic(h[3])), legend=SA, lty=c(1), lwd=c(1), col=Cols)
 
 # Sensitivity Analysis
@@ -41,21 +42,27 @@ wL <- uniroot(ESSBf, c(0.1, 1), tol=.Machine$double.eps)$root
 integralfnoc <- integralfnocf(wL)
 cPDF <- 1/(integralfnoc+1/k*exp(-gamma*wL))
 fL[1] <- cPDF/k*exp(-gamma*wL)
-PDFf1 <-Vectorize(function(w)PDFf(w, wL, cPDF))
-curve(PDFf1, wL, 1, lwd=1, add=T, col=Cols[1])
+averB[1] <- averBf(wL, cPDF)
+f1 <-Vectorize(function(w)ESSBf(w)*PDFf(w, wL, cPDF))
+curve(f1, wL, 1, lwd=1, add=T, col=Cols[1])
 
 h3 <- SA[2]
 wL <- uniroot(ESSBf, c(0.1, 1), tol=.Machine$double.eps)$root
 integralfnoc <- integralfnocf(wL)
 cPDF <- 1/(integralfnoc+1/k*exp(-gamma*wL))
 fL[2] <- cPDF/k*exp(-gamma*wL)
-PDFf1 <-Vectorize(function(w)PDFf(w, wL, cPDF))
-curve(PDFf1, wL, 1, lwd=1, add=T, col=Cols[2])
+averB[2] <- averBf(wL, cPDF)
+f1 <-Vectorize(function(w)ESSBf(w)*PDFf(w, wL, cPDF))
+curve(f1, wL, 1, lwd=1, add=T, col=Cols[2])
 
 h3 <- SA[3]
 wL <- uniroot(ESSBf, c(0.1, 1), tol=.Machine$double.eps)$root
 integralfnoc <- integralfnocf(wL)
 cPDF <- 1/(integralfnoc+1/k*exp(-gamma*wL))
 fL[3] <- cPDF/k*exp(-gamma*wL)
-PDFf1 <-Vectorize(function(w)PDFf(w, wL, cPDF))
-curve(PDFf1, wL, 1, lwd=1, add=T, col=Cols[3])
+averB[3] <- averBf(wL, cPDF)
+f1 <-Vectorize(function(w)ESSBf(w)*PDFf(w, wL, cPDF))
+curve(f1, wL, 1, lwd=1, add=T, col=Cols[3])
+
+fL
+averB

@@ -30,6 +30,13 @@ avermf <- function(wL, cPDF){
   return(res)
 }
 
+# Average B
+averBf <- function(wL, cPDF){
+  f1 <- function(w)ESSBf(w)*PDFf(w, wL, cPDF)
+  res <- integrate(f1, wL, 1, rel.tol=.Machine$double.eps^0.3)$value
+  return(res)
+}
+
 # Average E
 averEf <- function(wL, cPDF){
   f1 <- function(w)ESSEvf(w)*PDFf(w, wL, cPDF)

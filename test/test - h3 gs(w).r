@@ -35,7 +35,7 @@ gamma <- 1/((MAP/365/k)/1000)*nZ
 
 # Figures
 Cols <- c("black", "blue", "red")
-SA <- c(1, 10, 1e5)
+SA <- c(3, 10, 100)
 
 windows(8, 6)
 par(mgp=c(2.2, 1, 0), xaxs="i", yaxs="i", lwd=2, mar=c(4, 4, 1, 1), mfrow=c(1,1))
