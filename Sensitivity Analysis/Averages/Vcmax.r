@@ -4,7 +4,7 @@ source("Functions - PDF.r")
 
 # Parameterization
 LAI <- 1
-Vcmax <- 50
+#Vcmax <- 50
 cp <- 30
 Km <- 703
 Rd <- 1
@@ -18,29 +18,26 @@ b <- 4.38
 kxmax <- 5
 c <- 2.64
 d <- 3.54
-#h3 <- 10
+h3 <- 10
 h <- l*a*LAI/nZ*p
 h2 <- l*LAI/nZ*p/1000
 
 
 #environmental conditions
-h3 <- seq(1, 20, by=1)
+Vcmax <- c(0.5, 1, 1.5)*50
 ca <- c(400)  # Atmospheric CO2 concentration (ppm)
-#k <- c(0.05) # Rainfall frequency (per day)
-#MAP <- c(1500) # MAP=MDP*365; MAP: mean annual precipitation; MDP: mean daily precipitation
 k <- c(0.025, 0.1) # Rainfall frequency (per day)
 MAP <- seq(1000, 3000, by=500) # MAP=MDP*365; MAP: mean annual precipitation; MDP: mean daily precipitation
-env <- as.vector(expand.grid(h3, ca, k, MAP))
+env <- as.vector(expand.grid(Vcmax, ca, k, MAP))
 
 # Initialize
 dvs <- matrix(nrow=nrow(env), ncol=8)
-#dvs <- matrix(nrow=nrow(env), ncol=5)
 
 # Sensitivity Analysis
 for(i in 1:nrow(env)){
   
   begin <- proc.time()
-  h3 <- env[i, 1]
+  Vcmax <- env[i, 1]
   ca <- env[i, 2]
   k <- env[i, 3]
   MAP <- env[i, 4]
@@ -59,15 +56,13 @@ for(i in 1:nrow(env)){
   averw <- averwp1+fL*wL
   avercica <- avercicaf(wL, cPDF)
   dvs[i,] <- c(wL, fL, averA, EMAP, averm, averB, averw, avercica)
-  #dvs[i,] <- c(wL, fL, averA, averm, averB)
-  
+
   end <- proc.time()
   message(sprintf("%s/%s completed in %.2f min",i, nrow(env), (end[3]-begin[3])/60))
 }
 
 # Collect results
 res <- cbind(env, dvs)
-colnames(res) <- c("h3", "ca", "k", "MAP", "wL", "fwL", "averA", "E/MAP", "averm", "averB", "averw", "averci/ca") 
-#colnames(res) <- c("h3", "ca", "k", "MAP", "wL", "fwL", "averA", "averm", "averB")
+colnames(res) <- c("Vcmax", "ca", "k", "MAP", "wL", "fwL", "averA", "E/MAP", "averm", "averB", "averw", "averci/ca") 
 
-write.csv(res, "Derived Variables.csv", row.names = FALSE)
+write.csv(res, "Derived Variables/Vcmax.csv", row.names = FALSE)

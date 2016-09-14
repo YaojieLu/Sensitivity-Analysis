@@ -64,14 +64,14 @@ dev.copy2pdf(file = "Figures/gs(w)/Soil type 1.pdf")
 
 # Figures
 windows(8, 6)
-par(mgp=c(2.2, 1, 0), xaxs="i", yaxs="i", lwd=2, mar=c(3, 3.9, 1, 1), mfrow=c(1,1))
+par(mgp=c(2.2, 1, 0), xaxs="i", yaxs="i", lwd=2, mar=c(4, 4, 1, 1), mfrow=c(1,1))
 plot(0, 0,
-     type="n", xlab=NA, ylab=NA,
+     type="n", xlab=expression(italic(w)), ylab=expression(italic(psi[s]~(MPa))),
      xlim=c(0, 1), ylim=c(-20, 0))
 
 for(i in 1:length(SA1)){
   psf <- function(w)SA2[i]*w^(-SA1[i])
-  curve(psf, 0.1, 1, col=Cols[i], add=T)
+  curve(psf, 1e-3, 1, col=Cols[i], add=T)
 }
 
 legend("bottomright", title="Soil type", legend=Soiltype, lty=c(1), col=Cols)
