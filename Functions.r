@@ -6,11 +6,17 @@ psf <- function(w)pe*w^(-b)
 PLCf <- function(px)1-exp(-(-px/d)^c)
 
 # 50 % PLC loss
+Psi50fc <- function(c){
+  f1 <- function(px)exp(-(-px/d)^c)-0.5
+  res <- uniroot(f1, c(-20, 0), tol=.Machine$double.eps)$root
+  return(res)
+}
 Psi50fd <- function(d){
   f1 <- function(px)exp(-(-px/d)^c)-0.5
   res <- uniroot(f1, c(-20, 0), tol=.Machine$double.eps)$root
   return(res)
 }
+
 # xylem conductance function
 kxf <- function(px)kxmax*exp(-(-px/d)^c)
 
@@ -23,12 +29,12 @@ pxminf <- function(w){
 }
 
 # gsmaxf(w)
-gsmaxf <- function(w){
+gsmaxf <- Vectorize(function(w){
   ps <- psf(w)
   pxmin <- pxminf(w)
   res <- (ps-pxmin)*h2*kxf(pxmin)/(h*VPD)
   return(res)
-}
+})
 
 # xylem water potential function
 pxf <- function(w, gs){
