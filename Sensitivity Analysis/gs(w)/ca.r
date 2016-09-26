@@ -40,7 +40,7 @@ gamma <- 1/((MAP/365/k)/1000)*nZ
 
 # Sensitivity Analysis
 Cols <- c("black", "blue", "red")
-SA <- c(400, 600)
+SA <- c(400, 800)
 
 ca <- SA[1]
 wL <- uniroot(ESSBf, c(0.12, 1), tol=.Machine$double.eps)$root
