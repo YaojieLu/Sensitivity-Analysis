@@ -6,14 +6,24 @@ psf <- function(w)pe*w^(-b)
 PLCf <- function(px)1-exp(-(-px/d)^c)
 
 # 50 % PLC loss
+# c
 Psi50fc <- function(c){
   f1 <- function(px)exp(-(-px/d)^c)-0.5
   res <- uniroot(f1, c(-20, 0), tol=.Machine$double.eps)$root
   return(res)
 }
+
+# d
 Psi50fd <- function(d){
   f1 <- function(px)exp(-(-px/d)^c)-0.5
   res <- uniroot(f1, c(-20, 0), tol=.Machine$double.eps)$root
+  return(res)
+}
+
+# Inverse d
+InvPsi50fd <- function(px){
+  f1 <- function(d)exp(-(-px/d)^c)-0.5
+  res <- uniroot(f1, c(0, 10), tol=.Machine$double.eps)$root
   return(res)
 }
 
