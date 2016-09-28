@@ -9,14 +9,14 @@ PLCf <- function(px)1-exp(-(-px/d)^c)
 # c
 Psi50fc <- function(c){
   f1 <- function(px)exp(-(-px/d)^c)-0.5
-  res <- uniroot(f1, c(-20, 0), tol=.Machine$double.eps)$root
+  res <- uniroot(f1, c(-100, 0), tol=.Machine$double.eps)$root
   return(res)
 }
 
 # d
 Psi50fd <- function(d){
   f1 <- function(px)exp(-(-px/d)^c)-0.5
-  res <- uniroot(f1, c(-20, 0), tol=.Machine$double.eps)$root
+  res <- uniroot(f1, c(-100, 0), tol=.Machine$double.eps)$root
   return(res)
 }
 
@@ -34,7 +34,7 @@ kxf <- function(px)kxmax*exp(-(-px/d)^c)
 pxminf <- function(w){
   ps <- psf(w)
   f1 <- function(px)(ps-px)*h2*kxf(px)
-  res <- optimize(f1, c(-20, 0), tol=.Machine$double.eps, maximum=T)$maximum
+  res <- optimize(f1, c(-100, 0), tol=.Machine$double.eps, maximum=T)$maximum
   return(res)
 }
 
@@ -77,8 +77,8 @@ Bf <- function(w, gs)Af(gs)-mf(w, gs)
 # ESS gs(w)
 ESSf <- Vectorize(function(w){
   f1 <- function(gs)Bf(w, gs)
-  res <- optimize(f1, c(0, gsmaxf(w)), tol=.Machine$double.eps, maximum=T)
-  return(res$maximum)
+  res <- ifelse(gsmaxf(w)>0, optimize(f1, c(0, gsmaxf(w)), tol=.Machine$double.eps, maximum=T)$maximum, 0)
+  return(res)
 })
 
 # ESS A(w)
