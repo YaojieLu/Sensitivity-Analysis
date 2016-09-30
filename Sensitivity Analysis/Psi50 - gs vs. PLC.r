@@ -45,21 +45,25 @@ for(i in 1:length(SA2)){
 }
 
 # Figures
-Cols <- c("black", "blue", "red", "black")
+Cols <- c("black", "blue", "red", "forestgreen")
 windows(8, 6)
-par(mgp=c(2.2, 1, 0), xaxs="i", yaxs="i", lwd=2, mar=c(3.9, 3.9, 1, 1), mfrow=c(1,1))
-plot(data[1:2],
+par(mgp=c(2.2, 1, 0), xaxs="i", yaxs="i", lwd=2, mar=c(3.5, 3.5, 1, 1), mfrow=c(1, 1))
+plot(0, 0, type="n",
      xaxt="n", yaxt="n", xlab=NA, ylab=NA,
-     xlim=c(-10, 0), ylim=c(-4, 0),
-     cex.lab=1.3, type="l", col=Cols[1])
-points(data[3:4], type="l", col=Cols[2])
-points(data[5:6], type="l", col=Cols[3])
-curve(0.49*x-0.42, -7, -1, lty=2, add=T)
+     xlim=c(-10, 0), ylim=c(-4, 0), cex.lab=1.3)
 
 axis(1, xlim=c(-10, 0), pos=-4, lwd=2)
 mtext(expression(psi[x50*", "*PLC]~(MPa)),side=1,line=2.4, cex=1.3)
 axis(2, ylim=c(-4, 0), pos=-10, lwd=2)
 mtext(expression(psi[x50*", "*italic(g[s])]~(MPa)),side=2,line=1.8, cex=1.3)
-abline(a=0, b=1, lwd=1, lty=2)
-legend("topleft", c(expression(italic(h[3])*" = "*10), expression(italic(h[3])*" = "*25), expression(italic(h[3])*" = "*100), "Klein 2014"), lty=c(1, 1, 1, 2), col=Cols)
+abline(a=0, b=1, lwd=1, lty=3)
+legend("topleft", legend=SA2, title=expression(italic(h[3])), lty=c(1), col=Cols[2:4])
+legend("bottomright", c("Klein 2014"), lty=c(2), col=Cols[1])
+
+curve(0.49*x-0.42, -7, -1, lty=2, add=T)
+
+points(data[1:2], type="l", col=Cols[2])
+points(data[3:4], type="l", col=Cols[3])
+points(data[5:6], type="l", col=Cols[4])
+
 dev.copy2pdf(file = "Figures/gs50 - PLC50.pdf")

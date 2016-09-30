@@ -4,7 +4,7 @@ library(plotBy)
 data <- read.csv("Derived variables/h3.csv")
 colnames(data) <- c("h3", "ca", "k", "MAP", "wL", "fwL", "averA", "EMAP", "averm", "averB", "avrw", "averci/ca")
 
-data1 <- subset(data, MAP=="2000")
+data1 <- subset(data, MAP=="1900")
 
 # Figure
 Cols <- c("blue","red")
@@ -36,4 +36,4 @@ axis(1, xlim=c(0, 20), pos=0, lwd=2)
 axis(2, xlim=c(0, 1), pos=0, lwd=2)
 mtext(expression(italic(h[3])~(mu*mol~m^-2~s^-1)), side=1, line=2.4, cex=1.3)
 mtext(expression(bar(italic(E))/MAP), side=2, line=1.8, cex=1.3)
-dev.copy2pdf(file = "Figures/Averages/h3.pdf")
+dev.copy2pdf(file = "Figures/Averages/h3 2 (Averages).pdf")

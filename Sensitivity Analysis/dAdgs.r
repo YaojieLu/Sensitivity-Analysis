@@ -38,11 +38,11 @@ par(mgp=c(2.2, 1, 0), xaxs="i", yaxs="i", lwd=2, mar=c(3, 2, 0.5, 1), mfrow=c(2,
 ca <- SA[1]
 wL <- uniroot(ESSBf, c(0.12, 1), tol=.Machine$double.eps)$root
 curve(f1, wL, 1,
-     xaxt="n", yaxt="n", xlab=NA, ylab=NA,
-     xlim=c(0, 1), ylim=c(0, 500),
-     cex.lab=1.3, col=Cols[1])
+      xaxt="n", yaxt="n", xlab=NA, ylab=NA,
+      xlim=c(0, 1), ylim=c(0, 200),
+      cex.lab=1.3, col=Cols[1])
 
-axis(1, xlim=c(0, 0.2), pos=0, lwd=2)
+axis(1, xlim=c(0, 1), pos=0, lwd=2)
 mtext(expression(italic(w)),side=1,line=1.7, cex=1.3)
 mtext(expression(italic(dA/dg[s])),side=2,line=0.3, cex=1.3)
 
@@ -61,7 +61,7 @@ Vcmax <- SA[1]
 wL <- uniroot(ESSBf, c(0.12, 1), tol=.Machine$double.eps)$root
 curve(f1, wL, 1,
       xaxt="n", yaxt="n", xlab=NA, ylab=NA,
-      xlim=c(0, 1), ylim=c(0, 300),
+      xlim=c(0, 1), ylim=c(0, 100),
       cex.lab=1.3, col=Cols[1])
 
 axis(1, xlim=c(0, 0.2), pos=0, lwd=2)

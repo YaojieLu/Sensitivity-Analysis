@@ -27,7 +27,7 @@ gamma <- 1/((MAP/365/k)/1000)*nZ
 
 # Figures
 windows(8, 6)
-par(mgp=c(2.2, 1, 0), xaxs="i", yaxs="i", lwd=2, mar=c(3, 3.9, 1, 1), mfrow=c(1,1))
+par(mgp=c(2.2, 1, 0), xaxs="i", yaxs="i", lwd=2, mar=c(3, 4, 1, 1), mfrow=c(1,1))
 curve(gsmaxf, 0, 1,
       xaxt="n", yaxt="n", xlab=NA, ylab=NA,
       xlim=c(0, 1), ylim=c(0, 0.3),
@@ -40,7 +40,7 @@ mtext(expression(italic(g[s])~(mol~m^-2~s^-1)),side=2,line=1.8, cex=1.3)
 
 # Sensitivity Analysis
 Cols <- c("black", "blue", "red")
-SA <- c(1, 10, 20)
+SA <- c(1, 10, 100)
 
 h3 <- SA[1]
 wL <- uniroot(ESSBf, c(0.12, 1), tol=.Machine$double.eps)$root
@@ -55,4 +55,4 @@ wL <- uniroot(ESSBf, c(0.12, 1), tol=.Machine$double.eps)$root
 curve(ESSf, wL, 1, col=Cols[3], add=T)
 
 legend("topleft", title=expression(italic(h[3])), legend=SA, lty=c(1), col=Cols)
-dev.copy2pdf(file = "Figures/gs(w)/h3 2.pdf")
+dev.copy2pdf(file = "Figures/gs(w)/h3 (gs(w)).pdf")

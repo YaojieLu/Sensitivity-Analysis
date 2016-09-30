@@ -2,7 +2,7 @@
 # integralfnoc of PDF
 integralfnocf <- function(wL){
   rEf <- function(w)1/ESSEvf(w)
-  integralrEf <- Vectorize(function(w)integrate(rEf, wL, w, rel.tol=.Machine$double.eps^0.3)$value)
+  integralrEf <- Vectorize(function(w)integrate(rEf, wL, w, rel.tol=.Machine$double.eps^0.25)$value)
   fnoc <- function(w)1/ESSEvf(w)*exp(-gamma*w+k*integralrEf(w))
   res <- integrate(fnoc, wL, 1, rel.tol=.Machine$double.eps^0.3)$value
   return(res)
@@ -11,7 +11,7 @@ integralfnocf <- function(wL){
 # PDF of w
 PDFf <- function(w, wL, cPDF){
   rEf <- function(w)1/ESSEvf(w)
-  integralrEf <- Vectorize(function(w)integrate(rEf, wL, w, rel.tol=.Machine$double.eps^0.3)$value)
+  integralrEf <- Vectorize(function(w)integrate(rEf, wL, w, rel.tol=.Machine$double.eps^0.25)$value)
   res <- cPDF/ESSEvf(w)*exp(-gamma*w+k*integralrEf(w))
   return(res)
 }

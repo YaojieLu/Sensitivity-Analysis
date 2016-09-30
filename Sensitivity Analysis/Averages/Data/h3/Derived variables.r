@@ -24,10 +24,10 @@ h2 <- l*LAI/nZ*p/1000
 
 
 #environmental conditions
-h3 <- seq(1, 20, by=1)
+h3 <- seq(5, 50, by=5)
 ca <- c(400)  # Atmospheric CO2 concentration (ppm)
 k <- c(0.025, 0.1) # Rainfall frequency (per day)
-MAP <- seq(1000, 3000, by=500) # MAP=MDP*365; MAP: mean annual precipitation; MDP: mean daily precipitation
+MAP <- seq(100, 3000, by=300) # MAP=MDP*365; MAP: mean annual precipitation; MDP: mean daily precipitation
 env <- as.vector(expand.grid(h3, ca, k, MAP))
 
 # Initialize

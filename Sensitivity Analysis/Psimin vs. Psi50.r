@@ -45,22 +45,26 @@ for(i in 1:length(SA2)){
 }
 
 # Figures
+Cols <- c("lightblue", "lightpink", "blue", "red", "forestgreen")
 windows(8, 6)
-par(mgp=c(2.2, 1, 0), xaxs="i", yaxs="i", lwd=2, mar=c(3.9, 3.9, 1, 1), mfrow=c(1,1))
-plot(res[1:2],
+par(mgp=c(2.2, 1, 0), xaxs="i", yaxs="i", lwd=2, mar=c(3.5, 3.5, 1, 1), mfrow=c(1, 1))
+plot(0, 0, type="n",
      xaxt="n", yaxt="n", xlab=NA, ylab=NA,
      xlim=c(-15, 0), ylim=c(-15, 0),
-     cex.lab=1.3, type="l", lty=1)
-points(res[3:4], type="l", lty=2)
-points(res[5:6], type="l", lty=3)
-points(dataAng, type="p", col="lightblue", pch=1)
-points(dataGym, type="p", col="lightpink", pch=2)
+     cex.lab=1.3, col=Cols[1])
 
-axis(1, xlim=c(-15, 0), pos=-15, lwd=2)
+axis(1, xlim=c(-15, 0), pos=-15, lwd=2, at=c(-15, -10, -5, 0))
 mtext(expression(italic(psi[x50])~(MPa)),side=1,line=2.4, cex=1.3)
-axis(2, ylim=c(-15, 0), pos=-15, lwd=2)
+axis(2, ylim=c(-15, 0), pos=-15, lwd=2, at=c(-15, -10, -5, 0))
 mtext(expression(italic(psi[xmin])~(MPa)),side=2,line=1.8, cex=1.3)
-abline(a=0, b=1, lwd=1, lty=2)
-legend("bottomright", c(expression(italic(h[3])*" = "*10), expression(italic(h[3])*" = "*25), expression(italic(h[3])*" = "*100), "Angiosperm", "Gymnosperm"),
-       pch=c(NA, NA, NA, 1, 2), lty=c(1, 2, 3, NA, NA), col=c("black", "black", "black", "lightblue", "lightpink"))
+abline(a=0, b=1, lwd=1, lty=3)
+legend("topleft", legend=SA2, title=expression(italic(h[3])), lty=c(1), col=Cols[3:5])
+legend("bottomright", c("Angiosperm", "Gymnosperm"), pch=c(1, 2), col=Cols[1:2])
+
+points(dataAng, type="p", col=Cols[1], pch=1)
+points(dataGym, type="p", col=Cols[2], pch=2)
+points(res[1:2], type="l", col=Cols[3])
+points(res[3:4], type="l", col=Cols[4])
+points(res[5:6], type="l", col=Cols[5])
+
 dev.copy2pdf(file = "Figures/Psimin - Psi50.pdf")

@@ -2,6 +2,9 @@
 # psf(w)
 psf <- function(w)pe*w^(-b)
 
+# wf(ps)
+wf <- function(ps)(ps/pe)^(-1/b)
+
 # PLC(px)
 PLCf <- function(px)1-exp(-(-px/d)^c)
 
@@ -91,4 +94,34 @@ ESSmf <- Vectorize(function(w)mf(w, ESSf(w)))
 ESSBf <- function(w)ESSAf(w)-ESSmf(w)
 
 # ESS Ev(w)
-ESSEvf <- function(w)h*VPD*ESSf(w)
+ESSEvf <- function(w)h*VPD*ESSf(w)*nZ*1000
+
+# ESS g1(ps)
+ESSg1psf <- Vectorize(function(ps){
+  f1 <- function(w)psf(w)-ps
+  w <- uniroot(f1, c(0.1, 1), tol=.Machine$double.eps)$root
+  res <- sqrt(VPD*100)*(ca*ESSf(w)/(a*ESSAf(w))-1)
+  return(res)
+})
+
+# ESS gs(ps)
+ESSpsf <- function(ps){
+  w <- wf(ps)
+  res <- ESSf(w)
+  return(res)
+}
+
+# ESS PLC(w)
+ESSPLCf <- function(w){
+  px <- pxf(w, ESSf(w))
+  res <- PLCf(px)
+  return(res)
+}
+
+# ESS PLC(ps)
+ESSPLCpsf <- function(ps){
+  w <- wf(ps)
+  px <- pxf(w, ESSf(w))
+  res <- PLCf(px)
+  return(res)
+}
