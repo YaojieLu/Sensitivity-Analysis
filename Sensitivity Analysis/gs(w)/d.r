@@ -39,7 +39,7 @@ h2 <- l*LAI/nZ*p/1000
 gamma <- 1/((MAP/365/k)/1000)*nZ
 
 # Sensitivity Analysis
-Cols <- c("black", "blue", "red")
+Cols <- c("blue", "red", "forestgreen")
 SA <- c(0.5, 1, 1.5)*d
 
 d <- SA[1]

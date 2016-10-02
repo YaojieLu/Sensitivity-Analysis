@@ -39,7 +39,7 @@ axis(2, ylim=c(0, 0.3), pos=0, lwd=2)
 mtext(expression(italic(g[s])~(mol~m^-2~s^-1)),side=2,line=1.8, cex=1.3)
 
 # Sensitivity Analysis
-Cols <- c("black", "blue", "red")
+Cols <- c("blue", "red", "forestgreen")
 SA <- c(1, 10, 100)
 
 h3 <- SA[1]
