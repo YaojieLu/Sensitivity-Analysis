@@ -54,16 +54,16 @@ psL <- psf(wL)
 curve(f1, psL, pe, col=Cols[3], add=T)
 
 legend("topright", title=expression(psi[x50]), legend=round(sapply(SA, Psi50fd), 2), lty=c(1), col=Cols)
-
-# ESS PLC(psL)
-SA <- seq(0.5, 1.5, by=0.05)*3.54
-data <- data.frame(wL=numeric(length(SA)), psL=numeric(length(SA)), PLCwL=numeric(length(SA)))
-for(i in 1:length(SA)){
-  d <- SA[i]
-  data[i, 1] <- uniroot(ESSBf, c(0.12, 1), tol=.Machine$double.eps)$root
-  data[i, 2] <- psf(data[i, 1])
-  data[i, 3] <- f1(data[i, 2])
-}
-points(data[, 2], data[, 3], type="l", lty=2, lwd=1)
+#
+## ESS PLC(psL)
+#SA <- seq(0.5, 1.5, by=0.05)*3.54
+#data <- data.frame(wL=numeric(length(SA)), psL=numeric(length(SA)), PLCwL=numeric(length(SA)))
+#for(i in 1:length(SA)){
+#  d <- SA[i]
+#  data[i, 1] <- uniroot(ESSBf, c(0.12, 1), tol=.Machine$double.eps)$root
+#  data[i, 2] <- psf(data[i, 1])
+#  data[i, 3] <- f1(data[i, 2])
+#}
+#points(data[, 2], data[, 3], type="l", lty=2, lwd=1)
 
 dev.copy2pdf(file = "Figures/PLC(ps) d.pdf")
