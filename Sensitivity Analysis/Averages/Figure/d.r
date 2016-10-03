@@ -6,10 +6,10 @@ data <- read.csv("Derived variables/d.csv")
 colnames(data) <- c("d", "ca", "k", "MAP", "wL", "fwL", "averA", "EMAP", "averm", "averB", "avrw", "averci/ca")
 
 c <- 2.54
-psi50 <- round(sapply(data$d, Psi50fd), 2)
+psi50 <- round(sapply(data$d, Psi50fd), 1)
 
 # Figure
-Cols <- c("black", "blue","red")
+Cols <- c("forestgreen", "red", "blue")
 windows(8, 12)
 par(mgp=c(2.2, 1, 0), xaxs="i", yaxs="i", lwd=2, mar=c(3, 3.5, 0.5, 1), mfrow=c(2, 1))
 # average A
@@ -31,7 +31,7 @@ axis(1, xlim=c(0, 3000), pos=0, lwd=2, at=seq(0, 3000, by=1000))
 axis(2, xlim=c(0, 25), pos=0, lwd=2, at=seq(0, 25, by=5))
 mtext("MAP (mm)", side=1, line=1.8, cex=1.3)
 mtext(expression(bar(italic(A))~(mu*mol~m^-2~s^-1)), side=2, line=1.8, cex=1.3)
-legend("topleft", title=expression(italic(psi[x50])), legend=psi50[1:3], col=Cols, pch=19)
+legend("topleft", title=expression(italic(psi[x50])), legend=sort(psi50[1:3], decreasing=TRUE), col=sort(Cols, decreasing=TRUE), pch=19)
 
 # E/MAP
 par(yaxs="r")

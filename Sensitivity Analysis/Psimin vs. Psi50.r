@@ -29,7 +29,7 @@ gamma <- 1/((MAP/365/k)/1000)*nZ
 
 # Sensitivity Analysis
 SA1 <- seq(1/4.5, 4.5, by=0.1)*d
-SA2 <- c(10, 25, 100)
+SA2 <- c(1, 25, 100)
 res <- data.frame(PLC50=numeric(length(SA1)), PLCmin=numeric(length(SA1)),
                   PLC50=numeric(length(SA1)), PLCmin=numeric(length(SA1)),
                   PLC50=numeric(length(SA1)), PLCmin=numeric(length(SA1)))
@@ -47,7 +47,7 @@ for(i in 1:length(SA2)){
 # Figures
 Cols <- c("lightblue", "lightpink", "blue", "red", "forestgreen")
 windows(8, 6)
-par(mgp=c(2.2, 1, 0), xaxs="i", yaxs="i", lwd=2, mar=c(3.5, 3.5, 1, 1), mfrow=c(1, 1))
+par(mgp=c(2.2, 1, 0), xaxs="i", yaxs="i", lwd=2, mar=c(3.5, 3.5, 0.5, 0.5), mfrow=c(1, 1))
 plot(0, 0, type="n",
      xaxt="n", yaxt="n", xlab=NA, ylab=NA,
      xlim=c(-15, 0), ylim=c(-15, 0),

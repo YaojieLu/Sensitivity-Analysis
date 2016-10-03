@@ -29,13 +29,13 @@ h2 <- l*LAI/nZ*p/1000
 gamma <- 1/((MAP/365/k)/1000)*nZ
 
 # Figures
-windows(8, 6)
-par(mgp=c(2.2, 1, 0), xaxs="i", yaxs="i", lwd=2, mar=c(3, 4, 1, 1), mfrow=c(1,1))
+windows(8, 12)
+par(mgp=c(2.2, 1, 0), xaxs="i", lwd=2, mar=c(3.5, 3.5, 1, 1), mfrow=c(2, 1))
 plot(0, 0, type="n", xaxt="n", yaxt="n", xlab=NA, ylab=NA,
-     xlim=c(-5, 0), ylim=c(0, 15), cex.lab=1.3)
-axis(1, xlim=c(-5, 0), pos=0, lwd=2)
-mtext(expression(psi[s]~(MPa)),side=1,line=1.7, cex=1.3)
-axis(2, ylim=c(0, 15), pos=-5, lwd=2, at=c(0, 5, 10, 15))
+     xlim=c(-6, 0), ylim=c(0, 15), cex.lab=1.3)
+axis(1, xlim=c(-6, 0), pos=-15*0.04, lwd=2)
+mtext(expression(psi[s]~(MPa)),side=1,line=2.4, cex=1.3)
+axis(2, ylim=c(0, 15), pos=-6, lwd=2, at=c(0, 5, 10, 15))
 mtext(expression(italic(g[1])~(kPa^-0.5)),side=2,line=1.8, cex=1.3)
 
 # Zhou 2013
@@ -46,8 +46,8 @@ p <- cbind(ran, as.data.frame(coef(fits)))
 for(i in 1:nrow(p))curve(p[i, "a"]*exp(p[i, "b"]*x), from=p[i, "LWP.min"], to=0, add=TRUE, lwd=1, lty=3)
 
 # Sensitivity Analysis
-SA <- c(1, 10, 100)
-Cols <- c("black", "blue", "red")
+SA <- c(1, 25, 100)
+Cols <- c("blue", "red", "forestgreen")
 for(i in 1:length(SA)){
   h3 <- SA[i]
   wL <- uniroot(ESSBf, c(0.1, 1), tol=.Machine$double.eps)$root
@@ -55,5 +55,6 @@ for(i in 1:length(SA)){
   curve(ESSg1psf, psL, pe, col=Cols[i], add=T)
 }
 legend("topleft", title=expression(italic(h[3])), legend=SA, lty=c(1), col=Cols)
+text(-6*0.05/8*6, 15*0.95*1.04, "a", cex=1.5)
 
-dev.copy2pdf(file = "Figures/g1-ps (h3).pdf")
+#dev.copy2pdf(file = "Figures/g1-ps (h3).pdf")
