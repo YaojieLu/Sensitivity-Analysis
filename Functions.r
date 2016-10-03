@@ -99,7 +99,7 @@ ESSEvf <- function(w)h*VPD*ESSf(w)*nZ*1000
 # ESS g1(ps)
 ESSg1psf <- Vectorize(function(ps){
   f1 <- function(w)psf(w)-ps
-  w <- uniroot(f1, c(0.1, 1), tol=.Machine$double.eps)$root
+  w <- uniroot(f1, c(0.01, 1), tol=.Machine$double.eps)$root
   res <- sqrt(VPD*100)*(ca*ESSf(w)/(a*ESSAf(w))-1)
   return(res)
 })
