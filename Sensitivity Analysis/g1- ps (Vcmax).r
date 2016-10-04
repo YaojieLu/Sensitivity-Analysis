@@ -46,7 +46,7 @@ p <- cbind(ran, as.data.frame(coef(fits)))
 for(i in 1:nrow(p))curve(p[i, "a"]*exp(p[i, "b"]*x), from=p[i, "LWP.min"], to=0, add=TRUE, lwd=1, lty=3)
 
 # Sensitivity Analysis
-SA <- c(0.5, 1, 1.5)*Vcmax
+SA <- c(10, 40, 70)
 Cols <- c("blue", "red", "forestgreen")
 for(i in 1:length(SA)){
   Vcmax <- SA[i]

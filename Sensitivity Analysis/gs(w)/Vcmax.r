@@ -6,7 +6,7 @@ ca <- 400
 k <- 0.05
 MAP <- 1000
 LAI <- 1
-Vcmax <- 50
+#Vcmax <- 50
 cp <- 30
 Km <- 703
 Rd <- 1
@@ -27,7 +27,7 @@ gamma <- 1/((MAP/365/k)/1000)*nZ
 
 # Figures
 Cols <- c("black", "blue", "red")
-SA <- c(0.5, 1, 1.5)*Vcmax
+SA <- c(10, 40, 70)
 
 # gs(w)
 windows(8, 6)

@@ -94,7 +94,7 @@ ESSmf <- Vectorize(function(w)mf(w, ESSf(w)))
 ESSBf <- function(w)ESSAf(w)-ESSmf(w)
 
 # ESS Ev(w)
-ESSEvf <- function(w)h*VPD*ESSf(w)*nZ*1000
+ESSEvf <- function(w)h*VPD*ESSf(w)
 
 # ESS g1(ps)
 ESSg1psf <- Vectorize(function(ps){

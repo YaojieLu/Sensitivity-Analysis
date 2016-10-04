@@ -30,7 +30,7 @@ MAP <- seq(100, 4000, by=300) # MAP=MDP*365; MAP: mean annual precipitation; MDP
 env <- as.vector(expand.grid(d, ca, k, MAP))
 
 # Initialize
-dvs <- matrix(nrow=nrow(env), ncol=1)
+dvs <- matrix(nrow=nrow(env), ncol=8)
 
 # Sensitivity Analysis
 for(i in 1:nrow(env)){
@@ -45,15 +45,23 @@ for(i in 1:nrow(env)){
   wL <- uniroot(ESSBf, c(0.1, 1), tol=.Machine$double.eps)$root
   integralfnoc <- integralfnocf(wL)
   cPDF <- 1/(integralfnoc+1/k*exp(-gamma*wL))
+  fL <- cPDF/k*exp(-gamma*wL)
   averA <- averAf(wL, cPDF)
-  dvs[i,] <- c(averA)
-
+  averE <- averEf(wL, cPDF)
+  EMAP <- averE*500*365/MAP
+  averm <- avermf(wL, cPDF)
+  averB <- averA-averm
+  averwp1 <- averwp1f(wL, cPDF)
+  averw <- averwp1+fL*wL
+  avercica <- avercicaf(wL, cPDF)
+  dvs[i,] <- c(wL, fL, averA, EMAP, averm, averB, averw, avercica)
+  
   end <- proc.time()
   message(sprintf("%s/%s completed in %.2f min",i, nrow(env), (end[3]-begin[3])/60))
 }
 
 # Collect results
 res <- cbind(env, dvs)
-colnames(res) <- c("d", "ca", "k", "MAP", "averA") 
+colnames(res) <- c("d", "ca", "k", "MAP", "wL", "fwL", "averA", "E/MAP", "averm", "averB", "averw", "averci/ca")
 
 write.csv(res, "Derived Variables/d.csv", row.names = FALSE)
