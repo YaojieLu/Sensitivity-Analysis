@@ -2,8 +2,8 @@
 library(plotBy)
 
 data <- read.csv("Derived variables/VPD.csv")
-colnames(data) <- c("VPD", "ca", "k", "MAP", "averA")
-SA <- c(0.016, 0.02, 0.024)
+colnames(data) <- c("VPD", "ca", "k", "MAP", "wL", "fwL", "averA", "EMAP", "averm", "averB", "avrw", "averci/ca")
+SA <- c(0.01, 0.02, 0.04)
 
 # Figure
 Cols <- c("blue", "red", "forestgreen")

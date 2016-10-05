@@ -80,4 +80,4 @@ legend("topleft", title="Soil type", legend=Soiltype, lty=c(1), col=Cols)
 #  curve(psf, 1e-3, 1, col=Cols[i], add=T)
 #}
 
-dev.copy2pdf(file = "Figures/gs(w)/Soil type (gs(w)).pdf")
+#dev.copy2pdf(file = "Figures/Soil type (gs(w)).pdf")

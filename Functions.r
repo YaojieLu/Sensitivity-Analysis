@@ -37,7 +37,7 @@ kxf <- function(px)kxmax*exp(-(-px/d)^c)
 pxminf <- function(w){
   ps <- psf(w)
   f1 <- function(px)(ps-px)*h2*kxf(px)
-  res <- optimize(f1, c(-100, 0), tol=.Machine$double.eps, maximum=T)$maximum
+  res <- optimize(f1, c(-10, 0), tol=.Machine$double.eps, maximum=T)$maximum
   return(res)
 }
 

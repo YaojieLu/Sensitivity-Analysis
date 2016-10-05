@@ -23,7 +23,7 @@ h <- l*a*LAI/nZ*p
 h2 <- l*LAI/nZ*p/1000
 
 #environmental conditions
-VPD <- seq(0.8, 1.2, by=0.1)*0.02
+VPD <- seq(0.01, 0.04, by=0.005)
 ca <- c(400)  # Atmospheric CO2 concentration (ppm)
 k <- c(0.025, 0.1) # Rainfall frequency (per day)
 MAP <- seq(100, 4000, by=300) # MAP=MDP*365; MAP: mean annual precipitation; MDP: mean daily precipitation

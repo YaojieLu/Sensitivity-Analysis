@@ -42,8 +42,8 @@ mtext(expression(italic(g[1])~(kPa^-0.5)),side=2,line=1.8, cex=1.3)
 fits <- nlsList(g1new ~ a*exp(b*LWP)|Species, start=list(a=10, b=0.5), data=zhou)
 rangefun <- function(x)setNames(range(x), c("min", "max"))
 ran <- summaryBy(LWP ~ Species, FUN=rangefun, data=zhou)
-p <- cbind(ran, as.data.frame(coef(fits)))
-for(i in 1:nrow(p))curve(p[i, "a"]*exp(p[i, "b"]*x), from=p[i, "LWP.min"], to=0, add=TRUE, lwd=1, lty=3)
+pars <- cbind(ran, as.data.frame(coef(fits)))
+for(i in 1:nrow(pars))curve(pars[i, "a"]*exp(pars[i, "b"]*x), from=pars[i, "LWP.min"], to=0, add=TRUE, lwd=1, lty=3)
 
 # Sensitivity Analysis
 SA <- c(10, 40, 70)
@@ -55,6 +55,4 @@ for(i in 1:length(SA)){
   curve(ESSg1psf, psL, pe, col=Cols[i], add=T)
 }
 legend("topleft", title=expression(italic(V[cmax])), legend=SA, lty=c(1), col=Cols)
-text(-6*0.05/8*6, 15*0.95*1.04, "b", cex=1.5)
-
-dev.copy2pdf(file = "Figures/g1-ps.pdf")
+text(-6*0.05/8*6, 15*0.95*1.04, "c", cex=1.5)

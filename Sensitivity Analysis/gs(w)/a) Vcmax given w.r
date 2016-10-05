@@ -26,7 +26,7 @@ h2 <- l*LAI/nZ*p/1000
 gamma <- 1/((MAP/365/k)/1000)*nZ
 
 # Sensitivity Analysis
-Cols <- c("black", "blue", "red")
+Cols <- c("blue", "red", "forestgreen")
 
 SA <- seq(10, 100, by=5)
 data <- data.frame(gs02=numeric(length=length(SA)), gs03=numeric(length=length(SA)), gs1=numeric(length=length(SA)))
@@ -39,17 +39,19 @@ for(i in 1:length(SA)){
 
 # Figures
 windows(8, 6)
-par(mgp=c(2.2, 1, 0), xaxs="i", yaxs="i", lwd=2, mar=c(3.5, 4, 1, 1), mfrow=c(1,1))
+par(mgp=c(2.2, 1, 0), xaxs="i", yaxs="i", lwd=2, mar=c(3.5, 4, 1, 1), mfrow=c(2, 2))
 plot(SA, data[, 1],
      type="l", xaxt="n", yaxt="n", xlab=NA, ylab=NA,
-     xlim=c(0, 100), ylim=c(0, 0.3), cex.lab=1.3, col=Cols[1])
+     xlim=c(0, 100), ylim=c(0, 0.4), cex.lab=1.3, col=Cols[1])
 points(SA, data[, 2], type="l", col=Cols[2])
 points(SA, data[, 3], type="l", col=Cols[3])
 
 axis(1, xlim=c(0, 100), pos=0, lwd=2)
-mtext(expression(italic(V[cmax])~(mu*mol~m^-2~s^-1)),side=1,line=2.5, cex=1.3)
-axis(2, ylim=c(0, 0.3), pos=0, lwd=2)
+mtext(expression(italic(V[cmax])~(mu*mol~m^-2~s^-1)),side=1,line=2.7, cex=1.3)
+axis(2, ylim=c(0, 0.4), pos=0, lwd=2)
 mtext(expression(italic(g[s])~(mol~m^-2~s^-1)),side=2,line=1.7, cex=1.3)
 
 legend("topleft", c("0.2", "0.3", "1"), title=expression(italic(w)), lty=c(1), col=Cols)
-dev.copy2pdf(file = "Figures/gs(w)/Vcmax given w (gs(w)).pdf")
+text(100*(1-0.05/8*6), 0.4*0.95, "a", cex=1.5)
+
+#dev.copy2pdf(file = "Figures/gs(w)/Vcmax given w (gs(w)).pdf")
