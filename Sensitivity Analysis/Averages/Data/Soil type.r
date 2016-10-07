@@ -4,7 +4,7 @@ source("Functions - PDF.r")
 
 # Parameterization
 LAI <- 1
-#Vcmax <- 50
+Vcmax <- 50
 cp <- 30
 Km <- 703
 Rd <- 1
@@ -23,11 +23,10 @@ h <- l*a*LAI/nZ*p
 h2 <- l*LAI/nZ*p/1000
 
 #environmental conditions
-Vcmax <- seq(10, 70, by=5)
-ca <- c(400)  # Atmospheric CO2 concentration (ppm)
+ca <- c(400, 800)  # Atmospheric CO2 concentration (ppm)
 k <- c(0.025, 0.1) # Rainfall frequency (per day)
 MAP <- seq(100, 4000, by=300) # MAP=MDP*365; MAP: mean annual precipitation; MDP: mean daily precipitation
-env <- as.vector(expand.grid(Vcmax, ca, k, MAP))
+env <- as.vector(expand.grid(ca, k, MAP))
 
 # Initialize
 dvs <- matrix(nrow=nrow(env), ncol=8)
@@ -36,10 +35,9 @@ dvs <- matrix(nrow=nrow(env), ncol=8)
 for(i in 1:nrow(env)){
   
   begin <- proc.time()
-  Vcmax <- env[i, 1]
-  ca <- env[i, 2]
-  k <- env[i, 3]
-  MAP <- env[i, 4]
+  ca <- env[i, 1]
+  k <- env[i, 2]
+  MAP <- env[i, 3]
   gamma <- 1/((MAP/365/k)/1000)*nZ
   
   wL <- uniroot(ESSBf, c(0.1, 1), tol=.Machine$double.eps)$root
@@ -62,6 +60,6 @@ for(i in 1:nrow(env)){
 
 # Collect results
 res <- cbind(env, dvs)
-colnames(res) <- c("Vcmax", "ca", "k", "MAP", "wL", "fwL", "averA", "E/MAP", "averm", "averB", "averw", "averci/ca")
+colnames(res) <- c("ca", "k", "MAP", "wL", "fwL", "averA", "E/MAP", "averm", "averB", "averw", "averci/ca") 
 
-write.csv(res, "Derived Variables/Vcmax.csv", row.names = FALSE)
+write.csv(res, "Derived Variables/ca.csv", row.names = FALSE)

@@ -29,4 +29,4 @@ mtext("MAP (mm)", side=1, line=1.8, cex=1.3)
 mtext(expression(bar(italic(A))~(mu*mol~m^-2~s^-1)), side=2, line=1.8, cex=1.3)
 legend("topleft", legend=c(400, 800), title=expression(italic(c[a])), col=Cols, pch=c(19, 19))
 
-dev.copy2pdf(file = "Figures/Averages/ca (Averages).pdf")
+dev.copy2pdf(file = "Figures/ca (Averages).pdf")
