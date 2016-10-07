@@ -30,8 +30,8 @@ Cols <- c("blue", "red", "forestgreen")
 SA <- c(10, 40, 70)
 
 # gs(w)
-#windows(8, 6)
-#par(mgp=c(2.2, 1, 0), xaxs="i", yaxs="i", lwd=2, mar=c(3, 4, 1, 1), mfrow=c(1, 1))
+windows(8/2*3, 6)
+par(mgp=c(2.2, 1, 0), xaxs="i", yaxs="i", lwd=2, mar=c(4.5, 4.5, 1, 1), mfrow=c(2, 3))
 
 Vcmax <- SA[1]
 wL <- uniroot(ESSBf, c(0.12, 1), tol=.Machine$double.eps)$root
@@ -41,17 +41,15 @@ plot(0, 0,
      cex.lab=1.3)
 
 axis(1, xlim=c(0, 1), pos=0, lwd=2)
-mtext(expression(italic(w)),side=1,line=1.7, cex=1.3)
+mtext(expression(italic(w)),side=1,line=2.5, cex=1.3)
 axis(2, ylim=c(0, 0.4), pos=0, lwd=2)
 mtext(expression(italic(g[s])~(mol~m^-2~s^-1)),side=2,line=1.8, cex=1.3)
 
 legend("topleft", title=expression(italic(V[cmax])), legend=SA, lty=c(1), col=Cols)
-text(1*(1-0.05/8*6), 0.4*0.95, "b", cex=1.5)
+text(1*(1-0.05/8*6), 0.4*0.95, "a", cex=1.5)
 
 for(i in 1:length(SA)){
   Vcmax <- SA[i]
   wL <- uniroot(ESSBf, c(0.12, 1), tol=.Machine$double.eps)$root
   curve(ESSf, wL, 1, col=Cols[i], add=T)
 }
-
-#dev.copy2pdf(file = "Figures/gs(w)/Vcmax (gs(w)).pdf")

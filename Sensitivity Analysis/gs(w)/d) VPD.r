@@ -39,7 +39,7 @@ plot(0, 0,
       cex.lab=1.3)
 
 axis(1, xlim=c(0, 1), pos=0, lwd=2)
-mtext(expression(italic(w)),side=1,line=1.7, cex=1.3)
+mtext(expression(italic(w)),side=1,line=2.5, cex=1.3)
 axis(2, ylim=c(0, 0.4), pos=0, lwd=2)
 mtext(expression(italic(g[s])~(mol~m^-2~s^-1)),side=2,line=1.8, cex=1.3)
 
@@ -51,5 +51,3 @@ for(i in 1:length(SA)){
   wL <- uniroot(ESSBf, c(0.12, 1), tol=.Machine$double.eps)$root
   curve(ESSf, wL, 1, col=Cols[i], add=T)
 }
-
-dev.copy2pdf(file = "Figures/gs-w.pdf")
