@@ -23,10 +23,12 @@ h <- l*a*LAI/nZ*p
 h2 <- l*LAI/nZ*p/1000
 
 #environmental conditions
-ca <- c(400, 800)  # Atmospheric CO2 concentration (ppm)
-k <- c(0.025, 0.1) # Rainfall frequency (per day)
-MAP <- seq(100, 4000, by=300) # MAP=MDP*365; MAP: mean annual precipitation; MDP: mean daily precipitation
-env <- as.vector(expand.grid(ca, k, MAP))
+ca <- c(400)
+k <- c(0.025, 0.1)
+MAP <- seq(100, 4000, by=300)
+env1 <- as.vector(expand.grid(ca, k, MAP))
+ST <- data.frame(b=c(2.79, 4.74, 11.55), pe=c(-0.68, -1.38, -4.58)*10^-3)
+env <- cbind(ST[rep(1:nrow(ST), times=rep(nrow(env1), nrow(ST))), ], do.call(rbind, replicate(nrow(ST), env1, simplify=FALSE)))
 
 # Initialize
 dvs <- matrix(nrow=nrow(env), ncol=8)
@@ -35,12 +37,14 @@ dvs <- matrix(nrow=nrow(env), ncol=8)
 for(i in 1:nrow(env)){
   
   begin <- proc.time()
-  ca <- env[i, 1]
-  k <- env[i, 2]
-  MAP <- env[i, 3]
+  b <- env[i, 1]
+  pe <- env[i, 2]
+  ca <- env[i, 3]
+  k <- env[i, 4]
+  MAP <- env[i, 5]
   gamma <- 1/((MAP/365/k)/1000)*nZ
   
-  wL <- uniroot(ESSBf, c(0.1, 1), tol=.Machine$double.eps)$root
+  wL <- uniroot(ESSBf, c(0.001, 1), tol=.Machine$double.eps)$root
   integralfnoc <- integralfnocf(wL)
   cPDF <- 1/(integralfnoc+1/k*exp(-gamma*wL))
   fL <- cPDF/k*exp(-gamma*wL)
@@ -55,11 +59,11 @@ for(i in 1:nrow(env)){
   dvs[i,] <- c(wL, fL, averA, EMAP, averm, averB, averw, avercica)
   
   end <- proc.time()
-  message(sprintf("%s/%s completed in %.2f min",i, nrow(env), (end[3]-begin[3])/60))
+  message(sprintf("%s/%s completed in %.2f min",i, nrow(dvs), (end[3]-begin[3])/60))
 }
 
 # Collect results
 res <- cbind(env, dvs)
-colnames(res) <- c("ca", "k", "MAP", "wL", "fwL", "averA", "E/MAP", "averm", "averB", "averw", "averci/ca") 
+colnames(res) <- c("b", "pe", "ca", "k", "MAP", "wL", "fwL", "averA", "E/MAP", "averm", "averB", "averw", "averci/ca") 
 
-write.csv(res, "Derived Variables/ca.csv", row.names = FALSE)
+write.csv(res, "Derived Variables/Soil type.csv", row.names = FALSE)
