@@ -57,5 +57,5 @@ for(i in 1:length(SA)){
   curve(dmdgsf, 0, 0.4, add=T, lty=2, col=Cols[i])
 }
 
-legend("topright", title="VPD", legend=SA*1000, col=Cols, lty=2, bg="white")
+legend("topright", title="VPD", legend=SA*100, col=Cols, lty=2, bg="white")
 box()

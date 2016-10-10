@@ -1,9 +1,9 @@
-
-library(plotBy)
-
+#
+#library(plotBy)
+#
 data <- read.csv("Derived variables/VPD.csv")
 colnames(data) <- c("VPD", "ca", "k", "MAP", "wL", "fwL", "averA", "EMAP", "averm", "averB", "avrw", "averci/ca")
-data$VPD <- data$VPD*1000
+data$VPD <- data$VPD*100
 
 # Figure
 #Cols <- c("blue", "red", "forestgreen")
@@ -12,7 +12,7 @@ data$VPD <- data$VPD*1000
 # average A
 plotBy(data$averA ~ data$VPD, data=subset(data, k=="0.1" & MAP=="1300"),
        type='l', legend=FALSE, legendwhere="topleft",
-       xlim=c(10, 40), ylim=c(0, 15),
+       xlim=c(0, 4), ylim=c(0, 15),
        xlab=NA, ylab=NA,
        xaxt="n", yaxt="n",
        cex.lab=1.3, col=Cols[1])
@@ -20,11 +20,11 @@ plotBy(data$averA ~ data$VPD, data=subset(data, k=="0.1" & MAP=="1300"),
 plotBy(data$averB ~ data$VPD, data=subset(data, k=="0.1" & MAP=="1300"),
        type='l', legend=FALSE, col=Cols[2], add=T)
 
-axis(1, xlim=c(10, 40), pos=0, lwd=2)
-axis(2, xlim=c(0, 15), pos=10-30*0.04, lwd=2, at=seq(0, 15, by=5))
+axis(1, xlim=c(0, 4), pos=0, lwd=2)
+axis(2, xlim=c(0, 15), pos=0, lwd=2, at=seq(0, 15, by=5))
 mtext("VPD (kPa)", side=1, line=2.2, cex=1.3)
 mtext(expression(italic(bar(A)~or~bar(B))~(mu*mol~m^-2~s^-1)), side=2, line=1.8, cex=1.3)
-text(40+30*0.04-30*1.08*0.05/8*6, 15*0.95, "d", cex=1.5)
+text(4-4*0.05/8*6, 15*0.95, "d", cex=1.5)
 #
 #par(new=TRUE)
 #plotBy(data$averm ~ data$VPD, data=subset(data, k=="0.1" & MAP=="1300"),
@@ -38,5 +38,3 @@ text(40+30*0.04-30*1.08*0.05/8*6, 15*0.95, "d", cex=1.5)
 #mtext(expression(italic(bar(m))~(mu*mol~m^-2~s^-1)), side=4, line=2.9, cex=1.3)
 #legend("topleft", expression(italic(bar(A)), italic(bar(B)), italic(bar(m))), col=Cols, lty=c(1, 1), lwd=c(2, 2))
 box()
-
-dev.copy2pdf(file = "Figures/Averages (parameters).pdf")

@@ -27,14 +27,16 @@ h2 <- l*LAI/nZ*p/1000
 gamma <- 1/((MAP/365/k)/1000)*nZ
 
 # Figures
-windows(8, 6/2*3)
-par(mgp=c(2.2, 1, 0), xaxs="i", yaxs="i", lwd=2, mar=c(3.5, 4.2, 0.5, 1), mfrow=c(3, 2))
+#windows(8, 6/2*3)
+#par(mgp=c(2.2, 1, 0), xaxs="i", yaxs="i", lwd=2, mar=c(3.5, 4.2, 0.5, 1), mfrow=c(3, 2))
+windows(8, 6)
+par(mgp=c(2.2, 1, 0), xaxs="i", yaxs="i", lwd=2, mar=c(3.5, 4.2, 0.5, 1), mfrow=c(2, 2))
 
 source("Sensitivity Analysis/Averages/Figure/Rainfall regime/a) h3.r")
 source("Sensitivity Analysis/Averages/Figure/Rainfall regime/b) d.r")
 source("Sensitivity Analysis/Averages/Figure/Rainfall regime/c) Vcmax.r")
 source("Sensitivity Analysis/Averages/Figure/Rainfall regime/d) VPD.r")
-source("Sensitivity Analysis/Averages/Figure/Rainfall regime/e) Soil type.r")
-source("Sensitivity Analysis/Averages/Figure/Rainfall regime/f) ca.r")
+#source("Sensitivity Analysis/Averages/Figure/Rainfall regime/e) Soil type.r")
+#source("Sensitivity Analysis/Averages/Figure/Rainfall regime/f) ca.r")
 
 dev.copy2pdf(file = "Figures/Averages (rainfall)).pdf")

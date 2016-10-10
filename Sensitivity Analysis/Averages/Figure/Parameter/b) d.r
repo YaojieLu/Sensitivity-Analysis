@@ -1,7 +1,7 @@
-
-library(plotBy)
-source("Functions.r")
-
+#
+#library(plotBy)
+#source("Functions.r")
+#
 data <- read.csv("Derived variables/d.csv")
 colnames(data) <- c("d", "ca", "k", "MAP", "wL", "fwL", "averA", "EMAP", "averm", "averB", "avrw", "averci/ca")
 
@@ -12,7 +12,6 @@ data$psi50 <- sapply(data$d, Psi50fd)
 #Cols <- c("blue", "red", "forestgreen")
 #windows(8, 6)
 #par(mgp=c(2.2, 1, 0), xaxs="i", yaxs="i", lwd=2, mar=c(3.5, 3.5, 0.5, 1), mfrow=c(1, 1))
-par(xaxs="i")
 # average A
 plotBy(data$averA ~ data$psi50, data=subset(data, k=="0.1" & MAP=="1300" & psi50<=-0.5),
        type='l', legend=FALSE, legendwhere="topleft",

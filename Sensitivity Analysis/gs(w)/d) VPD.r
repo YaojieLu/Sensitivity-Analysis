@@ -28,7 +28,7 @@
 ## Sensitivity Analysis
 #Cols <- c("blue", "red", "forestgreen")
 Vcmax <- 50
-SA <- c(0.01, 0.02, 0.04)*1000
+SA <- c(0.01, 0.02, 0.04)*100
 # gs(w)
 #windows(8, 6)
 #par(mgp=c(2.2, 1, 0), xaxs="i", yaxs="i", lwd=2, mar=c(3, 4, 1, 1), mfrow=c(1, 1))
@@ -48,7 +48,7 @@ legend("topleft", title=expression(VPD), legend=SA, lty=c(1), col=Cols)
 text(1*(1-0.05/8*6), 0.4*0.95, "d", cex=1.5)
 
 for(i in 1:length(SA)){
-  VPD <- SA[i]/1000
+  VPD <- SA[i]/100
   wL <- uniroot(ESSBf, c(0.12, 1), tol=.Machine$double.eps)$root
   curve(ESSf, wL, 1, col=Cols[i], add=T)
 }
