@@ -90,5 +90,3 @@ curve(f1, wL, 1, col=Cols[1], add=T)
 ca <- SA[2]
 wL <- uniroot(ESSBf, c(0.12, 1), tol=.Machine$double.eps)$root
 curve(f1, wL, 1, col=Cols[2], add=T)
-
-dev.copy2pdf(file = "Figures/gs(w)/ca (gs(w)).pdf")

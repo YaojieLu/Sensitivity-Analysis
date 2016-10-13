@@ -37,5 +37,3 @@ windows(8, 6)
 par(mgp=c(2.2, 1, 0), xaxs="i", yaxs="i", lwd=2, mar=c(3.5, 3.3, 1, 1), mfrow=c(1, 1))
 plot(w, res, type="l", xlim=c(0, 1), ylim=c(0.9, 1.1), ylab="Response ratio")
 abline(h=1, lwd=1, lty=2)
-
-dev.copy2pdf(file = "Figures/gs(w)/ca ratio.pdf")
