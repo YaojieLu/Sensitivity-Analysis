@@ -26,7 +26,7 @@ plotBy(data$averA ~ data$MAP | b, data=subset(data, k=="0.1"),
 axis(1, xlim=c(0, 4000), pos=0, lwd=2, at=seq(0, 4000, by=1000))
 axis(2, xlim=c(0, 25), pos=0, lwd=2, at=seq(0, 25, by=5))
 mtext("MAP (mm)", side=1, line=2.4, cex=1.3)
-mtext(expression(bar(italic(A))~(mu*mol~m^-2~s^-1)), side=2, line=1.8, cex=1.3)
+mtext(expression(bar(italic(A[N]))~(mu*mol~m^-2~s^-1)), side=2, line=1.8, cex=1.3)
 text(4000-4000*0.05/8*6, 25*0.95, "e", cex=1.5)
 legend("topleft", title="Soil type", legend=c("Sand", "Sandy Loam", "Light Clay"), col=Cols, pch=19)
 box()

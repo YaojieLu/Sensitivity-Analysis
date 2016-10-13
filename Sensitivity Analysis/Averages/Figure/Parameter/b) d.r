@@ -26,7 +26,7 @@ plotBy(data$averB ~ data$psi50, data=subset(data, k=="0.1" & MAP=="1300" & psi50
 axis(1, xlim=c(-5, 0), pos=0, lwd=2)
 axis(2, xlim=c(0, 15), pos=-5, lwd=2, at=seq(0, 15, by=5))
 mtext(expression(italic(psi[x50])~(MPa)), side=1, line=2.5, cex=1.3)
-mtext(expression(italic(bar(A)~or~bar(B))~(mu*mol~m^-2~s^-1)), side=2, line=1.8, cex=1.3)
+mtext(expression(italic(bar(A[N])~or~bar(B))~(mu*mol~m^-2~s^-1)), side=2, line=1.8, cex=1.3)
 text(0-5*0.05/8*6, 15*0.95, "b", cex=1.5)
 #
 #par(new=TRUE)

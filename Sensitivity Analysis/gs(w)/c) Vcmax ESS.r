@@ -48,7 +48,7 @@ plot(0, 0,
      type="n", yaxt="n", xlab=NA, ylab=NA, xlim=c(0, 0.4), ylim=c(0, 40), cex.lab=1.3)
 
 mtext(expression(italic(g[s])~(mol~m^-2~s^-1)), side=1, line=3.3, cex=1.3)
-mtext(expression(italic(over(dA, dg[s]))*"  or  "*italic(over(partialdiff*m, partialdiff*g[s]))), side=2, line=0.15, cex=1.3)
+mtext(expression(italic(over(dA[N], dg[s]))*"  or  "*italic(over(partialdiff*m, partialdiff*g[s]))), side=2, line=0.15, cex=1.3)
 text(0.4*0.05/8*6, 40*0.95, "c", cex=1.5)
 
 for(i in 1:length(SA)){

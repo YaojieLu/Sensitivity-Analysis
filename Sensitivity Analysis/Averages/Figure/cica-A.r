@@ -18,6 +18,8 @@ axis(1, xlim=c(0, 20), pos=0.55, lwd=2)
 axis(2, xlim=c(0.55, 0.9), pos=0, lwd=2)
 mtext(expression(italic(bar(A[N]))~(mu*mol~m^-2~s^-1)), side=1, line=2.5, cex=1.3)
 mtext(expression(italic(bar(c[i])/c[a])), side=2, line=1.8, cex=1.3)
+text(3.8, 0.885, expression(italic(V[cmax]==10)))
+text(15.5, 0.6, expression(italic(V[cmax]==75)))
 legend("bottomleft", legend=c("Model result", "Franks & Farquhar 1999"), lty=c(1, 2))
 box()
 
