@@ -125,3 +125,6 @@ ESSPLCpsf <- function(ps){
   res <- PLCf(px)
   return(res)
 }
+
+# ESS cica(w)
+ESScicaf <- function(w)1-ESSAf(w)/ESSf(w)/ca

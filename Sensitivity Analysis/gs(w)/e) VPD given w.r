@@ -51,4 +51,4 @@ axis(2, ylim=c(0, 0.4), pos=0, lwd=2)
 mtext(expression(italic(g[s])~(mol~m^-2~s^-1)),side=2,line=1.8, cex=1.3)
 
 legend("topleft", c("0.2", "0.3", "1"), title=expression(italic(w)), lty=c(1), col=Cols)
-text(40*(1-0.05/8*6), 0.4*0.95, "e", cex=1.5)
+text(4*(1-0.05/8*6), 0.4*0.95, "e", cex=1.5)
