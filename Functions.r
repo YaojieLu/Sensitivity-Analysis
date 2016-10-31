@@ -26,7 +26,7 @@ Psi50fd <- function(d){
 # Inverse d
 InvPsi50fd <- function(px){
   f1 <- function(d)exp(-(-px/d)^c)-0.5
-  res <- uniroot(f1, c(0, 10), tol=.Machine$double.eps)$root
+  res <- uniroot(f1, c(0, 100), tol=.Machine$double.eps)$root
   return(res)
 }
 
@@ -37,7 +37,7 @@ kxf <- function(px)kxmax*exp(-(-px/d)^c)
 pxminf <- function(w){
   ps <- psf(w)
   f1 <- function(px)(ps-px)*h2*kxf(px)
-  res <- optimize(f1, c(-10, 0), tol=.Machine$double.eps, maximum=T)$maximum
+  res <- optimize(f1, c(-20, 0), tol=.Machine$double.eps, maximum=T)$maximum
   return(res)
 }
 
@@ -96,10 +96,13 @@ ESSBf <- function(w)ESSAf(w)-ESSmf(w)
 # ESS Ev(w)
 ESSEvf <- function(w)h*VPD*ESSf(w)
 
+# ESS Ev(ps)
+ESSEvpsf <- function(ps)h*VPD*ESSf(wf(ps))
+
 # ESS g1(ps)
 ESSg1psf <- Vectorize(function(ps){
   f1 <- function(w)psf(w)-ps
-  w <- uniroot(f1, c(0.01, 1), tol=.Machine$double.eps)$root
+  w <- uniroot(f1, c(0.001, 1), tol=.Machine$double.eps)$root
   res <- sqrt(VPD*100)*(ca*ESSf(w)/(a*ESSAf(w))-1)
   return(res)
 })
@@ -110,6 +113,13 @@ ESSpsf <- function(ps){
   res <- ESSf(w)
   return(res)
 }
+
+# ESS px(w)
+ESSpxpsf <- Vectorize(function(ps){
+  w <- wf(ps)
+  res <- pxf(w, ESSf(w))
+  return(res)
+})
 
 # ESS PLC(w)
 ESSPLCf <- function(w){
