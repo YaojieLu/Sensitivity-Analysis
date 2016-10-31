@@ -28,13 +28,14 @@
 ## Sensitivity Analysis
 #Cols <- c("blue", "red", "forestgreen")
 VPD <- 0.02
+wv <- c(0.2, 0.3, 1)
 SA <- seq(10, 100, by=5)
 data <- data.frame(gs02=numeric(length=length(SA)), gs03=numeric(length=length(SA)), gs1=numeric(length=length(SA)))
 for(i in 1:length(SA)){
   Vcmax <- SA[i]
-  data[i, 1] <- ESSf(0.2)
-  data[i, 2] <- ESSf(0.3)
-  data[i, 3] <- ESSf(1)
+  data[i, 1] <- ESSf(wv[1])
+  data[i, 2] <- ESSf(wv[2])
+  data[i, 3] <- ESSf(wv[3])
 }
 
 # Figures
@@ -51,5 +52,5 @@ mtext(expression(italic(V[cmax])~(mu*mol~m^-2~s^-1)),side=1,line=3.3, cex=1.3)
 axis(2, ylim=c(0, 0.4), pos=0, lwd=2)
 mtext(expression(italic(g[s])~(mol~m^-2~s^-1)),side=2,line=1.8, cex=1.3)
 
-legend("topleft", c("0.2", "0.3", "1"), title=expression(italic(w)), lty=c(1), col=Cols)
+legend("topleft", legend=wv, title=expression(italic(w)), lty=c(1), col=Cols)
 text(100*(1-0.05/8*6), 0.4*0.95, "b", cex=1.5)

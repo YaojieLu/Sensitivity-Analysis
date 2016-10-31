@@ -26,7 +26,7 @@ Psi50fd <- function(d){
 # Inverse d
 InvPsi50fd <- function(px){
   f1 <- function(d)exp(-(-px/d)^c)-0.5
-  res <- uniroot(f1, c(0, 10), tol=.Machine$double.eps)$root
+  res <- uniroot(f1, c(0, 100), tol=.Machine$double.eps)$root
   return(res)
 }
 
@@ -96,10 +96,13 @@ ESSBf <- function(w)ESSAf(w)-ESSmf(w)
 # ESS Ev(w)
 ESSEvf <- function(w)h*VPD*ESSf(w)
 
+# ESS Ev(ps)
+ESSEvpsf <- function(ps)h*VPD*ESSf(wf(ps))
+
 # ESS g1(ps)
 ESSg1psf <- Vectorize(function(ps){
   f1 <- function(w)psf(w)-ps
-  w <- uniroot(f1, c(0.01, 1), tol=.Machine$double.eps)$root
+  w <- uniroot(f1, c(0.001, 1), tol=.Machine$double.eps)$root
   res <- sqrt(VPD*100)*(ca*ESSf(w)/(a*ESSAf(w))-1)
   return(res)
 })
@@ -110,6 +113,13 @@ ESSpsf <- function(ps){
   res <- ESSf(w)
   return(res)
 }
+
+# ESS px(w)
+ESSpxpsf <- Vectorize(function(ps){
+  w <- wf(ps)
+  res <- pxf(w, ESSf(w))
+  return(res)
+})
 
 # ESS PLC(w)
 ESSPLCf <- function(w){
@@ -125,3 +135,6 @@ ESSPLCpsf <- function(ps){
   res <- PLCf(px)
   return(res)
 }
+
+# ESS cica(w)
+ESScicaf <- function(w)1-ESSAf(w)/ESSf(w)/ca

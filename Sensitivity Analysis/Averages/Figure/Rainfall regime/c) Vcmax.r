@@ -27,7 +27,7 @@ plotBy(data$averA ~ data$MAP | Var, data=subset(data, k=="0.1" & Var %in% SA),
 axis(1, xlim=c(0, 4000), pos=0, lwd=2)
 axis(2, xlim=c(0, 20), pos=0, lwd=2, at=seq(0, 20, by=5))
 mtext("MAP (mm)", side=1, line=2.4, cex=1.3)
-mtext(expression(bar(italic(A))~(mu*mol~m^-2~s^-1)), side=2, line=1.8, cex=1.3)
+mtext(expression(bar(italic(A[N]))~(mu*mol~m^-2~s^-1)), side=2, line=1.8, cex=1.3)
 text(4000-4000*0.05/8*6, 20*0.95, "c", cex=1.5)
 legend("topleft", title=expression(italic(V[cmax])), legend=SA, col=Cols, pch=19)
 box()

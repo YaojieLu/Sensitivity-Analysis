@@ -32,8 +32,6 @@ SA <- c(0.01, 0.02, 0.04)*100
 # gs(w)
 #windows(8, 6)
 #par(mgp=c(2.2, 1, 0), xaxs="i", yaxs="i", lwd=2, mar=c(3, 4, 1, 1), mfrow=c(1, 1))
-VPD <- SA[1]
-wL <- uniroot(ESSBf, c(0.12, 1), tol=.Machine$double.eps)$root
 plot(0, 0,
      type="n", xaxt="n", yaxt="n", xlab=NA, ylab=NA,
       xlim=c(0, 1), ylim=c(0, 0.4),
@@ -51,4 +49,25 @@ for(i in 1:length(SA)){
   VPD <- SA[i]/100
   wL <- uniroot(ESSBf, c(0.12, 1), tol=.Machine$double.eps)$root
   curve(ESSf, wL, 1, col=Cols[i], add=T)
+}
+
+# E(w)
+par(new=TRUE)
+f1 <- function(w)ESSEvf(w)*nZ*1000
+plot(0, 0,
+     type="n", xaxt="n", yaxt="n", xlab=NA, ylab=NA,
+     xlim=c(0, 1), ylim=c(0, 6),
+     cex.lab=1.3)
+
+axis(1, xlim=c(0, 1), pos=0, lwd=2)
+mtext(expression(italic(w)),side=1,line=2.5, cex=1.3)
+axis(4, ylim=c(0, 6), pos=1, lwd=2)
+mtext(expression(italic(E)~(mm~day^-1)),side=4,line=3.2, cex=1.3)
+
+legend("bottomright", legend=expression(italic(g[s]), italic(E)), lty=c(1, 2))
+
+for(i in 1:length(SA)){
+  VPD <- SA[i]/100
+  wL <- uniroot(ESSBf, c(0.12, 1), tol=.Machine$double.eps)$root
+  curve(f1, wL, 1, col=Cols[i], lty=2, add=T)
 }
