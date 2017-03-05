@@ -2,7 +2,9 @@
 source("Functions.r")
 data <- read.csv("data/Choat2012.csv")
 dataAng <- subset(data, Type=="Angiosperm", select=c("Psi50", "Psimin"))
+dataAng <- dataAng[order(dataAng$Psi50), ]
 dataGym <- subset(data, Type=="Gymnosperm", select=c("Psi50", "Psimin"))
+dataGym <- dataGym[order(dataGym$Psi50), ]
 
 # Parameterization
 ca <- 400
@@ -26,6 +28,12 @@ d <- 3.54
 h <- l*a*LAI/nZ*p
 h2 <- l*LAI/nZ*p/1000
 gamma <- 1/((MAP/365/k)/1000)*nZ
+
+# Regression
+fitAng <- nls(Psimin ~ -a*Psi50+b, data=dataAng, start=list(a=-0.4, b=-1),
+           control=c(minFactor=1e-5))
+fitGym <- nls(Psimin ~ -a*Psi50+b, data=dataGym, start=list(a=-0.4, b=-1),
+              control=c(minFactor=1e-5))
 
 # Sensitivity Analysis
 SA1 <- seq(1/4.5, 4.5, by=0.1)*d
@@ -62,9 +70,13 @@ legend("topleft", legend=SA2, title=expression(italic(h[3])), lty=c(1), col=Cols
 legend("bottomright", c("Angiosperm", "Gymnosperm"), pch=c(1, 2), col=Cols[1:2])
 
 points(dataAng, type="p", col=Cols[1], pch=1)
+lines(dataAng$Psi50, predict(fitAng), col=Cols[1])
 points(dataGym, type="p", col=Cols[2], pch=2)
+lines(dataGym$Psi50, predict(fitGym), col=Cols[2])
+
 points(res[1:2], type="l", col=Cols[3])
 points(res[3:4], type="l", col=Cols[4])
 points(res[5:6], type="l", col=Cols[5])
+
 
 dev.copy2pdf(file = "Figures/Psimin - Psi50.pdf")
