@@ -2,7 +2,7 @@
 library(nlme)
 library(doBy)
 source("Functions.r")
-zhou <- read.csv("Data/Zhou2013_g1data.csv")
+zhou <- read.csv("Data/Zhou 2014.csv")
 
 # Parameterization
 ca <- 400
@@ -22,8 +22,8 @@ pe <- -1.58*10^-3
 b <- 4.38
 kxmax <- 5
 c <- 2.64
-d <- 3.54
-h3 <- 10
+d <- 5
+h3 <- 1
 h <- l*a*LAI/nZ*p
 h2 <- l*LAI/nZ*p/1000
 gamma <- 1/((MAP/365/k)/1000)*nZ

@@ -21,7 +21,7 @@ h <- l*a*LAI/nZ*p
 h2 <- l*LAI/nZ*p/1000
 d <- 5
 
-h3SA <- c(25, 100)
+h3SA <- c(1, 100)
 res1 <- data.frame(h3=c(rep(h3SA[1], 101), rep(h3SA[2], 101)))
 res2 <- data.frame(ps=numeric(), g1=numeric())
 

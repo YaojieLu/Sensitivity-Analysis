@@ -32,10 +32,10 @@
 #windows(8, 12)
 #par(mgp=c(2.2, 1, 0), xaxs="i", lwd=2, mar=c(3.5, 3.5, 1, 1), mfrow=c(2, 1))
 plot(0, 0, type="n", xaxt="n", yaxt="n", xlab=NA, ylab=NA,
-     xlim=c(-6, 0), ylim=c(0, 15), cex.lab=1.3)
-axis(1, xlim=c(-6, 0), pos=-15*0.04, lwd=2)
+     xlim=c(-10, 0), ylim=c(0, 10), cex.lab=1.3)
+axis(1, xlim=c(-10, 0), pos=-10*0.04, lwd=2, at=c(-10, -5, 0))
 mtext(expression(psi[s]~(MPa)),side=1,line=2.4, cex=1.3)
-axis(2, ylim=c(0, 15), pos=-6, lwd=2, at=c(0, 5, 10, 15))
+axis(2, ylim=c(0, 10), pos=-10, lwd=2, at=c(0, 5, 10))
 mtext(expression(italic(g[1])~(kPa^-0.5)),side=2,line=1.8, cex=1.3)
 #
 ## Zhou 2013
@@ -46,8 +46,8 @@ mtext(expression(italic(g[1])~(kPa^-0.5)),side=2,line=1.8, cex=1.3)
 for(i in 1:nrow(pars))curve(pars[i, "a"]*exp(pars[i, "b"]*x), from=pars[i, "LWP.min"], to=0, add=TRUE, lwd=1, lty=3)
 
 # Sensitivity Analysis
-h3 <- 10
-d <- 3.54
+h3 <- 1
+d <- 5
 Vcmax <- 50
 VPD <- 0.02
 SA <- c(1.5, 1, 0.5)*d
@@ -59,6 +59,6 @@ for(i in 1:length(SA)){
   curve(ESSg1psf, psL, pe, col=Cols[i], add=T)
 }
 legend("topleft", title=expression(psi[x50]), legend=round(sapply(SA, Psi50fd), 1), lty=c(1), col=Cols)
-text(-6*0.05/8*6, 15*0.95*1.04, "b", cex=1.5)
+text(-10*0.05/8*6, 10*0.95*1.04, "b", cex=1.5)
 
 #dev.copy2pdf(file = "Figures/g1-ps.pdf")

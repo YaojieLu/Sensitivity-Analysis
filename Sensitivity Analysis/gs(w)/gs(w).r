@@ -27,6 +27,8 @@ wL <- uniroot(ESSBf, c(0.12, 1), tol=.Machine$double.eps)$root
 
 x <- seq(wL, 1, by=(1-wL)/100)
 y <- ESSf(x)
-data <- data.frame(w=x, gs=y)
+f1 <- Vectorize(Bf)
+z <- f1(x, y)
+data <- data.frame(w=x, gs=y, B=z)
 
 write.csv(data, "Derived Variables/gs(w).csv", row.names = FALSE)
